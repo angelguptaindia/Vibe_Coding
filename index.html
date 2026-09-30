@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ANGLES OF ANGEL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEFF3; --ink:#111B33; --muted:#4B5670; --accent:#2F4BFF; --tile:#DDE2EA; --foot:#111B33; --foot-ink:#ECEFF3;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0F1524;--ink:#E8ECF6;--muted:#9AA5C0;--accent:#7C8DFF;--tile:#1A2238;--foot:#0A0F1B;--foot-ink:#E8ECF6}
+}
+:root[data-theme="dark"]{--bg:#0F1524;--ink:#E8ECF6;--muted:#9AA5C0;--accent:#7C8DFF;--tile:#1A2238;--foot:#0A0F1B;--foot-ink:#E8ECF6}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 Karla,system-ui,sans-serif}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.5rem}
+
+header{padding:4.5rem 0 3rem;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;right:-6%;top:0;width:38%;height:100%;
+  background:var(--accent);opacity:.12;clip-path:polygon(40% 0,100% 0,100% 100%,0 100%)}
+h1{font:800 clamp(2.6rem,8vw,5.5rem)/.95 Syne,system-ui,sans-serif;margin:0;letter-spacing:-.02em;position:relative}
+h2{font:600 1.75rem/1.2 Syne,system-ui,sans-serif;margin:0 0 1.25rem}
+
+#about{padding:2rem 0 4rem}
+#about .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:3rem;align-items:start}
+.portrait{aspect-ratio:4/5;background:var(--tile);clip-path:polygon(0 0,100% 8%,100% 100%,0 92%)}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+#about p{max-width:60ch;color:var(--muted);margin:0 0 1rem}
+
+#work{padding:1rem 0 5rem}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.piece{margin:0}
+.piece button{all:unset;display:block;width:100%;cursor:zoom-in;background:var(--tile);
+  clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,28px 100%,0 calc(100% - 28px))}
+.piece img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .35s}
+.piece button:hover img{transform:scale(1.04)}
+.piece figcaption{padding:.75rem 0 0;font-weight:600}
+.piece figcaption span{display:block;font-weight:400;color:var(--muted);font-size:.95rem}
+
+footer{background:var(--foot);color:var(--foot-ink);padding:3.5rem 0 3rem}
+footer h2{margin-bottom:.75rem}
+footer ul{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.4rem}
+footer a{text-decoration-color:var(--accent);text-underline-offset:4px}
+footer small{display:block;margin-top:2rem;opacity:.65}
+
+dialog{border:0;padding:0;background:transparent;max-width:min(92vw,820px);width:100%}
+dialog::backdrop{background:rgba(8,12,24,.85)}
+dialog img{width:100%;display:block}
+dialog p{margin:.75rem 0 0;color:#fff;text-align:center}
+dialog form{margin:0}
+
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr}
+  #about .wrap{grid-template-columns:1fr;gap:1.5rem}
+  .portrait{max-width:280px}
+}
+@media (prefers-reduced-motion:reduce){.piece img{transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap"><h1>Angles of Angel</h1></div>
+</header>
+
+<main>
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="portrait" id="portrait"></div>
+      <div>
+        <h2 id="about-title">About me</h2>
+        <p>Hi, I'm Angel. I make paintings and prints built from sharp lines, folded planes and the light that falls between them.</p>
+        <p>This is placeholder text: replace it with your story, the materials you work with, where you studied, and what you want people to feel when they look at your pieces.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <h2 id="work-title">Art pieces</h2>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Contact Details</h2>
+    <p>Commissions, exhibitions and questions are welcome.</p>
+    <ul>
+      <li>Email: <a href="mailto:angelguptaindia@gmail.com">angelguptaindia@gmail.com</a></li>
+      <li>Phone: <a href="tel:92666XXXXX">92666XXXXX</a></li>
+      <li>Instagram: <a href="https://www.google.com">@anglesofangel</a></li>
+      <li>Studio: Your City, Your Country</li>
+    </ul>
+    <small>&copy; <span id="year"></span> Angles of Angel</small>
+  </div>
+</footer>
+
+<dialog id="viewer" aria-label="Enlarged art piece">
+  <form method="dialog"><button style="all:unset;cursor:zoom-out;display:block">
+    <img id="viewer-img" alt=""><p id="viewer-cap"></p>
+  </button></form>
+</dialog>
+
+<script>
+// Edit this list: replace `src` with your image file paths (e.g. "images/piece1.jpg").
+const pieces = [
+  {title:"Fold I",        note:"Acrylic on canvas, 2026", c:["#8aaec2","#8aaec2","#8aaec2"]},
+  {title:"Fold II",       note:"Acrylic on canvas, 2026", c:["#E4572E","#111B33","#A8DADC"]},
+  {title:"Shard",         note:"Ink on paper, 2025",      c:["#111B33","#7C8DFF","#ECEFF3"]},
+  {title:"Meridian",      note:"Screen print, 2025",      c:["#1B998B","#2E294E","#F4D35E"]},
+  {title:"Slant Light",   note:"Oil on panel, 2025",      c:["#F2C14E","#2F4BFF","#111B33"]},
+  {title:"Vertex",        note:"Gouache, 2024",           c:["#C1121F","#003049","#FDF0D5"]},
+  {title:"Half Angle",    note:"Linocut, 2024",           c:["#3A86FF","#8338EC","#FFBE0B"]},
+  {title:"Corner Study",  note:"Charcoal, 2024",          c:["#4B5670","#111B33","#DDE2EA"]},
+  {title:"Prism Garden",  note:"Mixed media, 2023",       c:["#06D6A0","#118AB2","#EF476F"]}
+];
+
+// Generates an angular SVG placeholder as a data URI (no external images needed).
+function placeholder(colors, seed){
+  const [a,b,c] = colors, r = n => ((seed*97 + n*53) % 60) + 20;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <rect width="400" height="400" fill="${a}"/>
+    <polygon points="0,${r(1)*4} 400,${r(2)*3} 400,400 0,400" fill="${b}"/>
+    <polygon points="${r(3)*4},0 400,0 400,${r(4)*4}" fill="${c}" opacity=".9"/>
+    <polygon points="0,400 ${r(5)*5},${r(6)*4} ${r(7)*6},400" fill="${a}" opacity=".75"/>
+  </svg>`;
+  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+}
+
+const grid = document.getElementById("grid");
+const viewer = document.getElementById("viewer");
+const vImg = document.getElementById("viewer-img");
+const vCap = document.getElementById("viewer-cap");
+
+pieces.forEach((p,i) => {
+  const src = p.src || placeholder(p.c, i+1);
+  const fig = document.createElement("figure");
+  fig.className = "piece";
+  fig.innerHTML = `<button type="button" aria-label="View ${p.title} larger"><img src="${src}" alt="${p.title}: placeholder artwork"></button>
+    <figcaption>${p.title}<span>${p.note}</span></figcaption>`;
+  fig.querySelector("button").addEventListener("click", () => {
+    vImg.src = src; vImg.alt = p.title; vCap.textContent = p.title + " – " + p.note;
+    viewer.showModal();
+  });
+  grid.appendChild(fig);
+});
+
+document.getElementById("portrait").innerHTML =
+  `<img alt="Placeholder portrait of Angel" src="${placeholder(["#7C8DFF","#111B33","#F2C14E"], 42)}">`;
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
