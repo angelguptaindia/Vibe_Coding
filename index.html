@@ -3,20 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ANGLES OF ANGEL</title>
+<title>Angles of Angel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Karla:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#ECEFF3; --ink:#111B33; --muted:#4B5670; --accent:#2F4BFF; --tile:#DDE2EA; --foot:#111B33; --foot-ink:#ECEFF3;
+  --bg:#d5b1e3; --ink:#111B33; --muted:#33304F; --accent:#0e1753; --tile:#e6d0ef; --foot:#c39ad6; --foot-ink:#111B33;
+  color-scheme:light;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#0F1524;--ink:#E8ECF6;--muted:#9AA5C0;--accent:#7C8DFF;--tile:#1A2238;--foot:#0A0F1B;--foot-ink:#E8ECF6}
-}
-:root[data-theme="dark"]{--bg:#0F1524;--ink:#E8ECF6;--muted:#9AA5C0;--accent:#7C8DFF;--tile:#1A2238;--foot:#0A0F1B;--foot-ink:#E8ECF6}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 Karla,system-ui,sans-serif}
@@ -95,12 +92,12 @@ dialog form{margin:0}
 
 <footer>
   <div class="wrap">
-    <h2>Contact Details</h2>
+    <h2>Contact</h2>
     <p>Commissions, exhibitions and questions are welcome.</p>
     <ul>
-      <li>Email: <a href="mailto:angelguptaindia@gmail.com">angelguptaindia@gmail.com</a></li>
-      <li>Phone: <a href="tel:92666XXXXX">92666XXXXX</a></li>
-      <li>Instagram: <a href="https://www.google.com">@anglesofangel</a></li>
+      <li>Email: <a href="mailto:hello@anglesofangel.example">hello@anglesofangel.example</a></li>
+      <li>Phone: <a href="tel:+40000000000">+40 000 000 000</a></li>
+      <li>Instagram: <a href="#">@anglesofangel</a></li>
       <li>Studio: Your City, Your Country</li>
     </ul>
     <small>&copy; <span id="year"></span> Angles of Angel</small>
@@ -114,18 +111,21 @@ dialog form{margin:0}
 </dialog>
 
 <script>
-// Edit this list: replace `src` with your image file paths (e.g. "images/piece1.jpg").
+// ===== EDIT THIS LIST =====
+// Put each image's file name (inside your "images" folder) in `file`.
+// Add, remove or reorder entries freely. If a file can't be found,
+// a placeholder is shown instead so you can spot the typo.
+const PORTRAIT_FILE = "portrait.jpg";   // your photo for the About section (optional)
 const pieces = [
-  {title:"Fold I",        note:"Acrylic on canvas, 2026", c:["#8aaec2","#8aaec2","#8aaec2"]},
-  {title:"Fold II",       note:"Acrylic on canvas, 2026", c:["#E4572E","#111B33","#A8DADC"]},
-  {title:"Shard",         note:"Ink on paper, 2025",      c:["#111B33","#7C8DFF","#ECEFF3"]},
-  {title:"Meridian",      note:"Screen print, 2025",      c:["#1B998B","#2E294E","#F4D35E"]},
-  {title:"Slant Light",   note:"Oil on panel, 2025",      c:["#F2C14E","#2F4BFF","#111B33"]},
-  {title:"Vertex",        note:"Gouache, 2024",           c:["#C1121F","#003049","#FDF0D5"]},
-  {title:"Half Angle",    note:"Linocut, 2024",           c:["#3A86FF","#8338EC","#FFBE0B"]},
-  {title:"Corner Study",  note:"Charcoal, 2024",          c:["#4B5670","#111B33","#DDE2EA"]},
-  {title:"Prism Garden",  note:"Mixed media, 2023",       c:["#06D6A0","#118AB2","#EF476F"]}
+  {title:"Fold I",       note:"Acrylic on canvas, 2026", file:"art1.jpeg"},
+  {title:"Fold II",      note:"Acrylic on canvas, 2026", file:"art2.jpeg"},
+  {title:"Shard",        note:"Ink on paper, 2025",      file:"art3.jpeg"},
+  {title:"Shard",        note:"Ink on paper, 2025",      file:"art4.jpeg"},
+  {title:"Shard",        note:"Ink on paper, 2025",      file:"art5.jpeg"},
+  {title:"Shard",        note:"Ink on paper, 2025",      file:"art6.jpeg"}
 ];
+const IMAGE_FOLDER = "images/";
+const fallbackColors = [["#2F4BFF","#111B33","#F2C14E"],["#E4572E","#111B33","#A8DADC"],["#1B998B","#2E294E","#F4D35E"]];
 
 // Generates an angular SVG placeholder as a data URI (no external images needed).
 function placeholder(colors, seed){
@@ -145,20 +145,25 @@ const vImg = document.getElementById("viewer-img");
 const vCap = document.getElementById("viewer-cap");
 
 pieces.forEach((p,i) => {
-  const src = p.src || placeholder(p.c, i+1);
+  const src = IMAGE_FOLDER + encodeURI(p.file);
+  const fb = placeholder(fallbackColors[i % 3], i+1);
   const fig = document.createElement("figure");
   fig.className = "piece";
-  fig.innerHTML = `<button type="button" aria-label="View ${p.title} larger"><img src="${src}" alt="${p.title}: placeholder artwork"></button>
+  fig.innerHTML = `<button type="button" aria-label="View ${p.title} larger"><img src="${src}" alt="${p.title}" loading="lazy"></button>
     <figcaption>${p.title}<span>${p.note}</span></figcaption>`;
   fig.querySelector("button").addEventListener("click", () => {
-    vImg.src = src; vImg.alt = p.title; vCap.textContent = p.title + " – " + p.note;
+    vImg.src = fig.querySelector("img").src; vImg.alt = p.title; vCap.textContent = p.title + " – " + p.note;
     viewer.showModal();
   });
+  fig.querySelector("img").addEventListener("error", e => { e.target.src = fb; e.target.dataset.missing = "1"; });
   grid.appendChild(fig);
 });
 
-document.getElementById("portrait").innerHTML =
-  `<img alt="Placeholder portrait of Angel" src="${placeholder(["#7C8DFF","#111B33","#F2C14E"], 42)}">`;
+const portraitImg = document.createElement("img");
+portraitImg.alt = "Portrait of Angel";
+portraitImg.src = IMAGE_FOLDER + encodeURI(PORTRAIT_FILE);
+portraitImg.addEventListener("error", () => { portraitImg.src = placeholder(["#7C8DFF","#111B33","#F2C14E"], 42); }, {once:true});
+document.getElementById("portrait").appendChild(portraitImg);
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
